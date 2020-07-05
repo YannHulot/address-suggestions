@@ -1,12 +1,11 @@
 {
   "name": "address-suggestions-test",
   "version": "1.0.0",
-  "description": "this package will return the address suggestions",
-  "main": "dist/server.js",
+  "description": "this package will return the address suggestions from google maps",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts",
-    "fix-lint": "./node_modules/eslint/bin/eslint.js  src --ext .ts --fix",
+    "lint": "standardx **/*.ts",
     "test": "jest --testTimeout=10000",
     "dev": "ts-node ./src/index.ts",
     "start": "nodemon ./lib/index.js",
@@ -15,9 +14,11 @@
   "author": "Yann Hulot",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4",
-    "supertest": "^4.0.2",
-    "winston": "^3.3.3"
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4"
   },
   "jest": {
     "testEnvironment": "node",
@@ -25,16 +26,32 @@
       "/node_modules/"
     ]
   },
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
+    "ignore": [
+      "/lib/"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ]
+  },
   "devDependencies": {
     "@types/jest": "26.0.3",
     "@types/node": "14.0.14",
-    "@typescript-eslint/eslint-plugin": "3.5.0",
-    "@typescript-eslint/parser": "3.5.0",
+    "@typescript-eslint/eslint-plugin": "^3.5.0",
+    "@typescript-eslint/parser": "^3.5.0",
     "eslint": "7.4.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-plugin-import": "2.22.0",
     "jest": "^26.1.0",
     "jest-express": "1.12.0",
+    "standardx": "^5.0.0",
     "ts-jest": "26.1.1",
     "typescript": "3.9.6"
   }
