@@ -2,6 +2,10 @@
 
 Query the Google maps API and autocomplete addresses
 
+## Build status
+
+[![CircleCI](https://circleci.com/gh/YannHulot/address-suggestions.svg?style=svg&circle-token=20e5706f1899fafd067bceb6b8d747591ce95112)](https://app.circleci.com/pipelines/github/YannHulot/address-suggestions)
+
 ## Getting Started
 
 ```bash
