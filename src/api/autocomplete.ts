@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Data, Prediction, Results } from '../types';
+import { Data, Results } from '../types';
 import { getAPIKey } from './key';
 import { createURL } from './url';
 
@@ -27,25 +27,17 @@ export const getPredictions = async (search: string): Promise<Results> => {
 
 const findPlaces = async (param: string, key: string): Promise<Results> => {
     const { status, predictions } = await callAPI(param, key);
-    if (status != "ZERO_RESULTS") {
+    if (!predictions) {
         return {
-            predictions,
-            status,
-        }
-    }
-
-
-    if (predictions.length > 0 || status != "ZERO_RESULTS") {
-        return {
-            predictions,
-            status,
+            predictions: null,
+            status: 'error',
+            error_message: 'test'
         }
     }
 
     return {
-        predictions: null,
-        status: 'error',
-        error_message: 'test'
+        predictions,
+        status,
     }
 }
 
