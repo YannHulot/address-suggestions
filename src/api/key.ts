@@ -1,8 +1,8 @@
 export const getAPIKey = (): string | null => {
-    const { API_KEY } = process.env;
+    const { API_KEY } = process.env
 
     if (!API_KEY) {
-        return null;
+        return null
     }
-    return API_KEY;
+    return API_KEY
 }

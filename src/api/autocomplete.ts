@@ -1,10 +1,10 @@
-import axios from 'axios';
-import { Data, Results } from '../types';
-import { getAPIKey } from './key';
-import { createURL } from './url';
+import axios from 'axios'
+import { Data, Results } from '../types'
+import { getAPIKey } from './key'
+import { createURL } from './url'
 
 export const getPredictions = async (search: string): Promise<Results> => {
-    const key = getAPIKey();
+    const key = getAPIKey()
     if (!key) {
         return {
             predictions: null,
@@ -26,7 +26,7 @@ export const getPredictions = async (search: string): Promise<Results> => {
 
 
 const findPlaces = async (param: string, key: string): Promise<Results> => {
-    const { status, predictions } = await callAPI(param, key);
+    const { status, predictions } = await callAPI(param, key)
     if (!predictions) {
         return {
             predictions: null,

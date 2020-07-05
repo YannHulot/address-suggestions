@@ -1,11 +1,11 @@
 
-import { getPredictions } from './autocomplete';
-import { Data, Results } from '../types';
+import { getPredictions } from './autocomplete'
+import { Data, Results } from '../types'
 
-import axios from 'axios';
+import axios from 'axios'
 
-jest.mock('axios');
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+jest.mock('axios')
+const mockedAxios = axios as jest.Mocked<typeof axios>
 
 afterEach(jest.resetAllMocks)
 
@@ -17,7 +17,7 @@ describe('autocomplete', () => {
                 "predictions": null,
                 "status": "error"
             }
-            const results = await getPredictions('test');
+            const results = await getPredictions('test')
             expect(results).toMatchObject(expectedResponse)
         })
 
@@ -29,7 +29,7 @@ describe('autocomplete', () => {
                 "predictions": null,
                 "status": "error"
             }
-            const results = await getPredictions('');
+            const results = await getPredictions('')
             expect(results).toMatchObject(expectedResponse)
         })
     })
@@ -39,7 +39,7 @@ describe('autocomplete', () => {
             const data = {
                 error: "this is a fake error"
             }
-            mockedAxios.get.mockImplementation(() => Promise.reject(data));
+            mockedAxios.get.mockImplementation(() => Promise.reject(data))
 
             const expectedResponse: Results = {
                 "predictions": null,
@@ -62,7 +62,7 @@ describe('autocomplete', () => {
         //     }
 
 
-        //     mockedAxios.get.mockImplementation(() => Promise.resolve(data));
+        //     mockedAxios.get.mockImplementation(() => Promise.resolve(data))
         //     const results = await getPredictions('test')
         //     expect(results).toMatchObject(expectedResponse)
         // })
@@ -128,7 +128,7 @@ describe('autocomplete', () => {
         //         "status": ""
         //     }
 
-        //     mockedAxios.get.mockImplementationOnce(() => Promise.resolve(data));
+        //     mockedAxios.get.mockImplementationOnce(() => Promise.resolve(data))
         //     const results = await getPredictions('test')
         //     expect(results).toMatchObject({})
         // })

@@ -1,4 +1,4 @@
-import { createURL } from './url';
+import { createURL } from './url'
 
 describe('create url', () => {
     it('creates the url', () => {

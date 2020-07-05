@@ -1,16 +1,16 @@
-import { getAPIKey } from './key';
+import { getAPIKey } from './key'
 
 describe('getAPIKey', () => {
-    const OLD_ENV = process.env;
+    const OLD_ENV = process.env
 
     beforeEach(() => {
         jest.resetModules() // most important - it clears the cache
-        process.env = { ...OLD_ENV }; // make a copy
-    });
+        process.env = { ...OLD_ENV } // make a copy
+    })
 
     afterAll(() => {
-        process.env = OLD_ENV; // restore old env
-    });
+        process.env = OLD_ENV // restore old env
+    })
 
     it('does not find the key', () => {
         const key = getAPIKey()
