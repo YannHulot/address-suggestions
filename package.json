@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "lint": "standardx **/*.ts",
+    "test-with-coverage": "jest --testTimeout=10000 --coverage",
     "test": "jest --testTimeout=10000",
     "dev": "ts-node ./src/index.ts",
     "start": "nodemon ./lib/index.js",
@@ -21,8 +22,12 @@
     "@babel/preset-typescript": "^7.10.4"
   },
   "jest": {
+    "testPathIgnorePatterns": [
+      "/lib/"
+    ],
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
+      "/lib/",
       "/node_modules/"
     ]
   },

@@ -1,13 +1,14 @@
 import axios from 'axios'
-import { Data, Results } from '../types'
-import { getAPIKey } from './key'
-import { createURL } from './url'
+import { Data, Results, formattedPredictions } from '../types'
+import { getAPIKey } from '../utils/key'
+import { createURL } from '../utils/url'
+import { formatResults } from '../utils/format-results';
 
 export const getPredictions = async (search: string): Promise<Results> => {
     const key = getAPIKey()
     if (!key) {
         return {
-            predictions: null,
+            predictions: [],
             status: "error",
             error_message: "API KEY not set in env"
         }
@@ -15,7 +16,7 @@ export const getPredictions = async (search: string): Promise<Results> => {
 
     if (!search || search.length === 0) {
         return {
-            predictions: null,
+            predictions: [],
             status: "error",
             error_message: "search string needs to have 1 character minimum"
         }
@@ -27,16 +28,16 @@ export const getPredictions = async (search: string): Promise<Results> => {
 
 const findPlaces = async (param: string, key: string): Promise<Results> => {
     const { status, predictions } = await callAPI(param, key)
-    if (!predictions) {
+    if (!predictions && status === 'error') {
         return {
-            predictions: null,
+            predictions: [],
             status: 'error',
             error_message: 'test'
         }
     }
 
     return {
-        predictions,
+        predictions: formatResults(predictions),
         status,
     }
 }
@@ -48,7 +49,7 @@ const callAPI = async (place: string, key: string): Promise<Data> => {
         const { data } = await axios.get(url)
         return data as Data
     } catch (err) {
-        return { predictions: null, status: 'ERROR' }
+        return { predictions: null, status: 'error' }
     }
 }
 

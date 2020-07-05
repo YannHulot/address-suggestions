@@ -1,4 +1,10 @@
 /* eslint-disable camelcase */
+export interface formattedPredictions {
+    description: string
+    id: string
+    terms: Term[]
+    types: string[]
+}
 export interface MatchedSubstring {
     length: number
     offset: number
@@ -18,7 +24,7 @@ export interface StructuredFormatting {
     main_text: string
     main_text_matched_substrings: MainTextMatchedSubstring[]
     secondary_text: string
-    secondary_text_matched_substrings: SecondaryTextMatchedSubstring[]
+    secondary_text_matched_substrings?: SecondaryTextMatchedSubstring[]
 }
 
 export interface Term {
@@ -43,7 +49,7 @@ export interface Data {
 }
 
 export interface Results {
-    predictions: Prediction[] | null
+    predictions: formattedPredictions[]
     status: string
     error_message?: string
 }
