@@ -1,11 +1,12 @@
 # Address autocomplete with Google Maps API
 
-Query the Google maps API
+Query the Google maps API and autocomplete addresses
 
 ## Getting Started
 
+```bash
 git clone https://github.com/YannHulot/address-suggestions
-
+```
 
 ### Prerequisites
 
