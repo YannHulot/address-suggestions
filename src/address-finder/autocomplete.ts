@@ -28,11 +28,11 @@ export const getPredictions = async (search: string): Promise<Results> => {
 
 const findPlaces = async (param: string, key: string): Promise<Results> => {
     const { status, predictions } = await callAPI(param, key)
-    if (!predictions && status === 'error') {
+    if (status === 'error') {
         return {
             predictions: [],
             status: 'error',
-            error_message: 'test'
+            error_message: 'there was an error querying the api'
         }
     }
 
@@ -49,7 +49,7 @@ const callAPI = async (place: string, key: string): Promise<Data> => {
         const { data } = await axios.get(url)
         return data as Data
     } catch (err) {
-        return { predictions: null, status: 'error' }
+        return { predictions: [], status: 'error' }
     }
 }
 

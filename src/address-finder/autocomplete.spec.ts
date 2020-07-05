@@ -45,7 +45,8 @@ describe('getPredictions', () => {
 
             const expectedResponse: Results = {
                 "predictions": [],
-                "status": "error"
+                "status": "error",
+                "error_message": "there was an error querying the api"
             }
 
             const results = await getPredictions('test')
